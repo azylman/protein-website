@@ -12,6 +12,7 @@
 					<ul class="nav">
 						<li><a href="#intro">Introduction</a></li>
 						<li><a href="#dataset">Dataset</a></li>
+						<li><a href="#fv">Feature vector</a></li>
 						<li><a href="#results">Results</a></li>
 					</ul>
 				</div>
@@ -93,18 +94,29 @@
 				Primary structures of interacting protein pairs were obtained from UCLA's Database of Interacting Proteins which contains over 50,000 entries representing pairs of proteins known to mutually bind ("positive interactions"). Pairs of proteins known to be unable to bind ("negative interactions") are not included in the database, so we needed to create them by permuting sequences of positively interacting pairs. If one member of a pair of positively interacting proteins is shuffled, the result is a synthetic native-like protein that, with a high degree of certainty, can be said to interact negatively. This permutation was performed using Shufflet, a bioinformatics application developed by Eivind Coward, University of Bergen. Overall, 134,550 protein-pairs were used, with half of these being interacting pairs and the other half non-interacting.
 			</section>
 			
+			<section id="fv">
+				<div class="page-header"><h1>Feature vector</h1></div>
+				Proteins were represented by feature vectors by aggregating descriptors of their amino acid constituents. The descriptors we considered were <strong>hydrophobicity</strong>, <strong>hydrophicility</strong>, <strong>volume</strong>s of side chains, <strong>polarity</strong>, <strong>polarizability</strong>, solvent-accessible surface area (<strong>SASA</strong>) and net charge index (<strong>NCI</strong>). These descriptors were chosen because they, in particular, affect the binding properties of the overall protein. They have a known value for each amino acid that we normalized before constructing our feature vector.
+				<br/><br/>
+				Aggregate descriptor values for proteins were assembled by finding the autocovariance (AC) of their values up to a distance lg away from a particular amino acid. Given a protein sequence, AC variables describe the average interactions between residues, a certain lag apart throughout the whole sequence. These values were calculated according to:
+				<br/><br/>
+				<img src="/images/acc.png" />
+				<br/><br/>
+				where j represents one descriptor, i the position in the sequence X, n the length of the sequence X and lag <= lg the value of the lag. The software SVM-Light was employed in the classiffication of feature vectors. A linear function was chosen as the kernel function due to time constraints.
+			</section>
+			
 			<section id="results">
 				<div class="page-header"><h1>Results</h1></div>
 				
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam auctor nibh urna, id dictum leo. Nam condimentum, ante ut viverra faucibus, nisi magna posuere mauris, ac luctus ante est sed felis. Sed quis eros purus. Aliquam erat volutpat. Integer euismod tempus eros, non vestibulum nisl pretium vitae. Nam sed turpis gravida tortor sollicitudin dignissim id ac nulla. Curabitur iaculis bibendum mauris, sit amet laoreet metus consequat sit amet.
+				We achieved a 72.56% accuracy rate using a linear kernel and the full set of features. This compares to the roughly 80% accuracy of current research into this problem. From there, we wanted to find out which acid descriptors had the largest effect in determining the accuracy of our classiffier.
 				<br/><br/>
-				Morbi molestie est vel ligula tincidunt convallis. Donec vitae felis pulvinar dolor condimentum hendrerit. Ut sodales faucibus accumsan. Donec interdum tellus ac libero tincidunt rutrum. Proin commodo, sem non aliquam tincidunt, dolor ligula volutpat sapien, eu rutrum felis nisl dignissim nunc. Nunc risus sem, fringilla ut pulvinar vel, consectetur in eros. Morbi accumsan placerat leo, sit amet condimentum risus dignissim non. Nulla suscipit tortor at elit lobortis ullamcorper. Maecenas eget justo at mauris egestas bibendum. Nunc eleifend varius molestie. Aenean ut pharetra tortor. Sed porta mattis odio. Sed felis libero, consectetur nec vulputate gravida, convallis et libero. Vestibulum sem metus, egestas ut tristique ut, tincidunt ut libero. Sed iaculis semper dui, et scelerisque sapien sollicitudin sed. Vivamus placerat adipiscing condimentum.
+				Initially, we ran our classiffier seven times, each time using all of the descriptors except for one. This way, we get an average accuracy of 72.07% (with a standard deviation of .31%), only slightly less than our accuracy using all of the descriptors. The removal of SASA had the largest effect, dropping our accuracy to 71.67%, while the removal of polarizability had the least effect, dropping our accuracy to 72.46%.
 				<br/><br/>
-				Donec sodales enim sed turpis malesuada euismod. Donec nec urna erat, id varius erat. Proin volutpat egestas placerat. Aliquam eget purus et mi dignissim pretium a ac tellus. Curabitur sit amet ipsum consectetur nibh cursus bibendum a in nunc. Nam dictum, mauris sit amet egestas faucibus, mi nisi auctor massa, ac vestibulum eros nibh eget sem. Duis sodales leo sed massa dapibus id vehicula leo sodales. Curabitur sed nisl nec nisi iaculis fringilla. Nulla et diam viverra neque adipiscing lobortis non posuere purus. Aenean pellentesque auctor risus, vitae porta enim tincidunt sed. Ut lacinia diam eros, in venenatis lorem. Proin fermentum orci vel diam imperdiet mollis.
+				Subsequently, we ran our classiffier seven times, each using only one of our seven descriptors. The average accuracy of 61.84% with a standard deviation of 4.79%. The descriptor that had the least effect on accuracy was NCI, which had an accuracy of 57.04%. The descriptor that had the largest effect was polarity, which had an accuracy of 68.08%. While most of our training was done with a linear kernel, we ran this training data a second time using a radial basis kernel function, which increased our accuracy to 71.4%.
 				<br/><br/>
-				Proin aliquet urna sed lectus luctus fermentum. Sed convallis, urna ut consequat sodales, nulla lorem ultrices ante, ut fringilla ante nulla blandit neque. Pellentesque at nibh nec neque vulputate pellentesque. Curabitur nec eros leo, id convallis sapien. Integer eleifend rutrum quam eu tincidunt. Aenean volutpat diam at nibh blandit accumsan. In congue libero a erat gravida sollicitudin. Praesent nibh arcu, elementum nec dignissim id, mattis ut leo.
+				Next, we wanted to see which descriptor, when paired with polarity, gave the highest accuracy so we ran our classiffier six times using each of the remaining six descriptors and polarity. We got an average accuracy of 69.32% with a standard deviation of .38%. The descriptor that had the highest accuracy when paired with polarity was SASA at 69.88%, while the descriptor with the lowest accuracy was 68.92%.
 				<br/><br/>
-				In a metus sed nulla semper vehicula. Pellentesque consectetur mattis posuere. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse at nulla convallis nisi bibendum gravida ut et velit. Ut non venenatis arcu. Ut eros sapien, consequat vel tincidunt nec, rutrum ac arcu. Sed condimentum tempus facilisis. Integer tortor libero, gravida vel sagittis eu, malesuada ut lectus. Aenean luctus odio id augue gravida vehicula. Suspendisse eu sollicitudin magna. Nunc augue quam, laoreet non viverra id, mollis et neque. Curabitur rutrum enim sit amet orci laoreet condimentum.
+				When we look at our descriptors paired with polarity and SASA, the average is 70.67% and the standard deviation is .46%. The maximum accuracy of 71.47% was achieved using volume, polarity, and SASA while the lowest accuracy of 70.36% was a result of using polarity, SASA, and NCI.
 			</section>
 		</div>
 		
