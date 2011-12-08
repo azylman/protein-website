@@ -107,16 +107,29 @@
 			
 			<section id="results">
 				<div class="page-header"><h1>Results</h1></div>
-				
-				We achieved a 72.56% accuracy rate using a linear kernel and the full set of features. This compares to the roughly 80% accuracy of current research into this problem. From there, we wanted to find out which acid descriptors had the largest effect in determining the accuracy of our classiffier.
-				<br/><br/>
-				Initially, we ran our classiffier seven times, each time using all of the descriptors except for one. This way, we get an average accuracy of 72.07% (with a standard deviation of .31%), only slightly less than our accuracy using all of the descriptors. The removal of SASA had the largest effect, dropping our accuracy to 71.67%, while the removal of polarizability had the least effect, dropping our accuracy to 72.46%.
-				<br/><br/>
-				Subsequently, we ran our classiffier seven times, each using only one of our seven descriptors. The average accuracy of 61.84% with a standard deviation of 4.79%. The descriptor that had the least effect on accuracy was NCI, which had an accuracy of 57.04%. The descriptor that had the largest effect was polarity, which had an accuracy of 68.08%. While most of our training was done with a linear kernel, we ran this training data a second time using a radial basis kernel function, which increased our accuracy to 71.4%.
-				<br/><br/>
-				Next, we wanted to see which descriptor, when paired with polarity, gave the highest accuracy so we ran our classiffier six times using each of the remaining six descriptors and polarity. We got an average accuracy of 69.32% with a standard deviation of .38%. The descriptor that had the highest accuracy when paired with polarity was SASA at 69.88%, while the descriptor with the lowest accuracy was 68.92%.
-				<br/><br/>
-				When we look at our descriptors paired with polarity and SASA, the average is 70.67% and the standard deviation is .46%. The maximum accuracy of 71.47% was achieved using volume, polarity, and SASA while the lowest accuracy of 70.36% was a result of using polarity, SASA, and NCI.
+				<div class="grid">
+					<div class="row">
+						<div class="span10">
+							We achieved a 72.56% accuracy rate using a linear kernel and the full set of features. This compares to the roughly 80% accuracy of current research into this problem. From there, we wanted to find out which acid descriptors had the largest effect in determining the accuracy of our classiffier.
+							<br/><br/>
+							Initially, we ran our classiffier seven times, each time using all of the descriptors except for one. This way, we get an average accuracy of 72.07% (with a standard deviation of .31%), only slightly less than our accuracy using all of the descriptors. The removal of SASA had the largest effect, dropping our accuracy to 71.67%, while the removal of polarizability had the least effect, dropping our accuracy to 72.46%.
+						</div>
+						<div class="span6"><img src="/images/accuracy-small.png"/></div>
+					</div>
+					<br/>
+					<div class="row">
+						<div class="span6"><img src="/images/accuracy_by_num_features-small.png" /></div>
+						<div class="span10">Subsequently, we ran our classiffier seven times, each using only one of our seven descriptors. The average accuracy of 61.84% with a standard deviation of 4.79%. The descriptor that had the least effect on accuracy was NCI, which had an accuracy of 57.04%. The descriptor that had the largest effect was polarity, which had an accuracy of 68.08%. While most of our training was done with a linear kernel, we ran this training data a second time using a radial basis kernel function, which increased our accuracy to 71.4%.</div>
+					</div>
+					<br/>
+					<div class="row">
+						<div class="span16">Next, we wanted to see which descriptor, when paired with polarity, gave the highest accuracy so we ran our classiffier six times using each of the remaining six descriptors and polarity. We got an average accuracy of 69.32% with a standard deviation of .38%. The descriptor that had the highest accuracy when paired with polarity was SASA at 69.88%, while the descriptor with the lowest accuracy was 68.92%.</div>
+					</div>
+					<br/>
+					<div class="row">
+						<div class="span16">When we look at our descriptors paired with polarity and SASA, the average is 70.67% and the standard deviation is .46%. The maximum accuracy of 71.47% was achieved using volume, polarity, and SASA while the lowest accuracy of 70.36% was a result of using polarity, SASA, and NCI.</div>
+					</div>
+				</div>
 			</section>
 		</div>
 		
