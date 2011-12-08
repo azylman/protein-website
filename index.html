@@ -11,7 +11,7 @@
 					<a class="brand" href="#overview">Protein Interaction</a>
 					<ul class="nav">
 						<li><a href="#intro">Introduction</a></li>
-						<li><a href="#data">Data</a></li>
+						<li><a href="#dataset">Dataset</a></li>
 						<li><a href="#results">Results</a></li>
 					</ul>
 				</div>
@@ -88,18 +88,9 @@
 				</div>
 			</section>
 		
-			<section id="data">
-				<div class="page-header"><h1>Data</h1></div>
-				
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam auctor nibh urna, id dictum leo. Nam condimentum, ante ut viverra faucibus, nisi magna posuere mauris, ac luctus ante est sed felis. Sed quis eros purus. Aliquam erat volutpat. Integer euismod tempus eros, non vestibulum nisl pretium vitae. Nam sed turpis gravida tortor sollicitudin dignissim id ac nulla. Curabitur iaculis bibendum mauris, sit amet laoreet metus consequat sit amet.
-				<br/><br/>
-				Morbi molestie est vel ligula tincidunt convallis. Donec vitae felis pulvinar dolor condimentum hendrerit. Ut sodales faucibus accumsan. Donec interdum tellus ac libero tincidunt rutrum. Proin commodo, sem non aliquam tincidunt, dolor ligula volutpat sapien, eu rutrum felis nisl dignissim nunc. Nunc risus sem, fringilla ut pulvinar vel, consectetur in eros. Morbi accumsan placerat leo, sit amet condimentum risus dignissim non. Nulla suscipit tortor at elit lobortis ullamcorper. Maecenas eget justo at mauris egestas bibendum. Nunc eleifend varius molestie. Aenean ut pharetra tortor. Sed porta mattis odio. Sed felis libero, consectetur nec vulputate gravida, convallis et libero. Vestibulum sem metus, egestas ut tristique ut, tincidunt ut libero. Sed iaculis semper dui, et scelerisque sapien sollicitudin sed. Vivamus placerat adipiscing condimentum.
-				<br/><br/>
-				Donec sodales enim sed turpis malesuada euismod. Donec nec urna erat, id varius erat. Proin volutpat egestas placerat. Aliquam eget purus et mi dignissim pretium a ac tellus. Curabitur sit amet ipsum consectetur nibh cursus bibendum a in nunc. Nam dictum, mauris sit amet egestas faucibus, mi nisi auctor massa, ac vestibulum eros nibh eget sem. Duis sodales leo sed massa dapibus id vehicula leo sodales. Curabitur sed nisl nec nisi iaculis fringilla. Nulla et diam viverra neque adipiscing lobortis non posuere purus. Aenean pellentesque auctor risus, vitae porta enim tincidunt sed. Ut lacinia diam eros, in venenatis lorem. Proin fermentum orci vel diam imperdiet mollis.
-				<br/><br/>
-				Proin aliquet urna sed lectus luctus fermentum. Sed convallis, urna ut consequat sodales, nulla lorem ultrices ante, ut fringilla ante nulla blandit neque. Pellentesque at nibh nec neque vulputate pellentesque. Curabitur nec eros leo, id convallis sapien. Integer eleifend rutrum quam eu tincidunt. Aenean volutpat diam at nibh blandit accumsan. In congue libero a erat gravida sollicitudin. Praesent nibh arcu, elementum nec dignissim id, mattis ut leo.
-				<br/><br/>
-				In a metus sed nulla semper vehicula. Pellentesque consectetur mattis posuere. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse at nulla convallis nisi bibendum gravida ut et velit. Ut non venenatis arcu. Ut eros sapien, consequat vel tincidunt nec, rutrum ac arcu. Sed condimentum tempus facilisis. Integer tortor libero, gravida vel sagittis eu, malesuada ut lectus. Aenean luctus odio id augue gravida vehicula. Suspendisse eu sollicitudin magna. Nunc augue quam, laoreet non viverra id, mollis et neque. Curabitur rutrum enim sit amet orci laoreet condimentum.
+			<section id="dataset">
+				<div class="page-header"><h1>Dataset</h1></div>
+				Primary structures of interacting protein pairs were obtained from UCLA's Database of Interacting Proteins which contains over 50,000 entries representing pairs of proteins known to mutually bind ("positive interactions"). Pairs of proteins known to be unable to bind ("negative interactions") are not included in the database, so we needed to create them by permuting sequences of positively interacting pairs. If one member of a pair of positively interacting proteins is shuffled, the result is a synthetic native-like protein that, with a high degree of certainty, can be said to interact negatively. This permutation was performed using Shufflet, a bioinformatics application developed by Eivind Coward, University of Bergen. Overall, 134,550 protein-pairs were used, with half of these being interacting pairs and the other half non-interacting.
 			</section>
 			
 			<section id="results">
