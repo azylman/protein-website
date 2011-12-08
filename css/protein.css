@@ -55,6 +55,11 @@ section {
 
 .jumbotron .lead a {
 	color: #FFF;
+	text-decoration: underline;
+}
+
+.jumbotron .lead a:hover {
+	font-size: 22px;
 }
 
 .quickstart {
